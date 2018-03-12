@@ -9,7 +9,7 @@ const instance = axios.create({
     headers: authHeader
 });
 
-export const fetchFilms = (
+export const fetchFilteredFilms = (
     limit = 20,
     offset = 0,
     ids = '',
@@ -29,8 +29,27 @@ export const fetchFilms = (
                 description: searchString
             }
         }).then(({ data: { results } }) => {
+            dispatch(fetchSearchAction(results));
+        }).catch(error => console.log(error));
+    }
+}
+
+export const fetchFilms = () => {
+    return dispatch => {
+        instance.get(url, {
+            params: {
+                limit: 10000
+            }
+        }).then(({ data: { results } }) => {
             dispatch(fetchFilmsAction(results));
         }).catch(error => console.log(error));
+    }
+}
+
+export const fetchSearchAction = (data) => {
+    return {
+        type: 'GET_SEARCH_RESULTS',
+        films: data        
     }
 }
 
