@@ -1,5 +1,6 @@
 import React from 'react';
 import FilmSearch from '../containers/FilmSearch'
+import FilmCatalog from '../containers/FilmCatalog';
 
 class App extends React.Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
         return (
             <div>
                 {isLoggedin && <FilmSearch />}
+                {isLoggedin && <FilmCatalog/> }                
             </div>
         );
     }
