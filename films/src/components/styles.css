@@ -42,7 +42,7 @@ input[type='search']:focus::placeholder {
 .searchResults {
     position: absolute;
     z-index: 9999;
-    width: 100%;
+    width: 90%;
     height: 500px;
     overflow-y: visible;
     text-align: left;
@@ -205,4 +205,66 @@ input[type='search']:focus::placeholder {
         width: 300px;
         height: auto;
     }
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Typography */
+
+h1 {
+    font-weight: 800;
+    transition: all 0.35s ease-out;
+}
+
+h2 {
+    font-weight: 800;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    transition: all 0.35s ease-out;
+}
+
+/* Nav */
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul a {
+    font-weight: 600;
+}
+
+a h1:hover,
+ul a:hover {
+    color: rgb(39, 107, 146);
+}
+
+button {
+    background-color: #263238;
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 2px;
+    cursor: pointer;
+    align-items: baseline;
+    position: absolute;
+    top: 1%;
+    right: 5%;
+}
+
+button:hover {
+    background-color: #000;
+    color: rgb(39, 107, 146);    
 }

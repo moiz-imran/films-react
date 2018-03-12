@@ -2,6 +2,7 @@ import React from 'react';
 import FilmSearch from '../containers/FilmSearch';
 
 import './styles.css';
+import Header from './Header';
 
 export class FilmView extends React.Component {
     componentDidMount() {
@@ -23,6 +24,7 @@ export class FilmView extends React.Component {
 
         return (
             <div className="container">
+                <Header />
                 <FilmSearch />
 
                 <div className="moviePage">

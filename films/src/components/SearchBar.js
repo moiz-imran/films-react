@@ -41,7 +41,7 @@ class SearchBar extends React.Component {
         console.log(filteredresults)
         return (
             <div id='form'>
-                <SearchInput className="searchBar" onChange={this.searchUpdated} value={this.state.searchQuery} />
+                <SearchInput className="searchBar" onChange={this.searchUpdated} fuzzy={true} sortResults={true} value={this.state.searchQuery} />
                 {this.state.showResults && <SearchResults results={filteredresults} onClick={this.handleClick} />}
             </div>
         )
