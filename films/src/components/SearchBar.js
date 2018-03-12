@@ -13,11 +13,16 @@ class SearchBar extends React.Component {
             showResults: false
         }
 
+        this.handleClick = this.handleClick.bind(this);
         this.searchUpdated = this.searchUpdated.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchFilms();
+    }
+
+    handleClick() {
+        this.setState({ showResults: false, searchQuery: '' });
     }
 
     searchUpdated(term) {
@@ -36,8 +41,8 @@ class SearchBar extends React.Component {
         console.log(filteredresults)
         return (
             <div id='form'>
-                <SearchInput className="searchBar" onChange={this.searchUpdated} />
-                {this.state.showResults && <SearchResults results={filteredresults} />}
+                <SearchInput className="searchBar" onChange={this.searchUpdated} value={this.state.searchQuery} />
+                {this.state.showResults && <SearchResults results={filteredresults} onClick={this.handleClick} />}
             </div>
         )
     }

@@ -1,5 +1,25 @@
-import React from 'react'
+import { connect } from 'react-redux'
+import { fetchFilmById } from '../actions/films'
+import FilmView from '../components/FilmView'
 
-const FilmPage = () => {};
+const mapStateToProps = (state, ownParams) => {
+    return {
+        film: state.film,
+        id: ownParams.match.params.id
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchFilm: (id) => {
+            dispatch(fetchFilmById(id))
+        }
+    }
+}
+
+const FilmPage = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FilmView)
 
 export default FilmPage;
