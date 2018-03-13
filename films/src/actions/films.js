@@ -9,14 +9,14 @@ const instance = axios.create({
     headers: authHeader
 });
 
-export const fetchFilteredFilms = (
+export const fetchFilteredFilms = ({
     limit = 20,
     offset = 0,
     ids = '',
     max_year = '',
     min_year = '',
     searchString = ''
-) => {
+}) => {
     return dispatch => {
         instance.get(url, {
             params: {
@@ -28,8 +28,8 @@ export const fetchFilteredFilms = (
                 title: searchString,
                 description: searchString
             }
-        }).then(({ data: { results } }) => {
-            dispatch(fetchSearchAction(results));
+        }).then(({ data }) => {
+            dispatch(fetchSearchAction(data));
         }).catch(error => console.log(error));
     }
 }
@@ -126,5 +126,22 @@ export const deleteFilmAction = (id) => {
     return {
         type: 'DELETE_FILM',
         id: id
+    }
+}
+
+export const loadMore = (nextUrl) => {
+    return dispatch => {
+        instance.get(nextUrl)
+            .then(({ data }) => {
+                dispatch(loadMoreAction(data));
+            })
+            .catch(error => console.log(error));
+    }
+}
+
+export const loadMoreAction = (data) => {
+    return {
+        type: 'LOAD_MORE',
+        films: data
     }
 }

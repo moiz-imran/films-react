@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchFilteredFilms } from '../actions/films'
+import { fetchFilteredFilms, loadMore } from '../actions/films'
 import FilmsList from '../components/FilmsList'
 
 const mapStateToProps = state => {
@@ -11,9 +11,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchFilms: () => {
-            dispatch(fetchFilteredFilms())
-        }
+        fetchFilms: (data) => {
+            dispatch(fetchFilteredFilms(data))
+        },
+        loadMore: (url) => {
+            dispatch(loadMore(url))
+        } 
     }
 }
 
