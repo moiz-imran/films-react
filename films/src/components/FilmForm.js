@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FilmForm = ({ handleSubmit, film = {} }) => {
+const FilmForm = ({ handleSubmit, film = {}, showDelete = false, onDelete }) => {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="title">Title:</label>
@@ -20,6 +20,7 @@ const FilmForm = ({ handleSubmit, film = {} }) => {
             <br />
 
             <button type='submit'>Confirm</button>
+            {showDelete && <button onClick={onDelete}>Delete</button>}
         </form>        
     )
 }

@@ -24,7 +24,9 @@ export class FilmView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.id !== this.props.id) {
+        if (!nextProps.film.id) {
+            this.props.history.push('/')
+        } else if (nextProps.id !== this.props.id) {
             this.props.fetchFilm(nextProps.id)
         }
     }

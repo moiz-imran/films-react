@@ -7,10 +7,15 @@ class EditFilmModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            filmEditted: false
+            filmEditted: false,
+            deleting: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        this.onDeletePrompt = this.onDeletePrompt.bind(this);
+        this.onCancel = this.onCancel.bind(this);
+        this.onModalClose = this.onModalClose.bind(this);
     }
 
     handleSubmit(e) {
@@ -29,18 +34,42 @@ class EditFilmModal extends React.Component {
         this.props.closeModal();
     }
 
+    onDeletePrompt() {
+        this.setState({ deleting: true });
+    }
+
+    onDelete() {
+        const { history, deleteFilm, film } = this.props;
+        deleteFilm(film.id);
+    }
+
+    onCancel() {
+        this.setState({ deleting: false });
+    }
+
+    onModalClose() {
+        this.props.closeModal();
+        this.setState({ deleting: false });
+    }
+
     render() {
         const { showModal, closeModal, film } = this.props;
         return (
             <div align='center'>
                 <Modal
                     show={showModal}
-                    onClose={closeModal}
+                    onClose={this.onModalClose}
                     transitionSpeed={1}
                 >
-                    <a style={closeStyle} onClick={closeModal}>X</a>
+                    <a style={closeStyle} onClick={this.onModalClose}>X</a>
                     <h2>Edit Film</h2>
-                    <FilmForm handleSubmit={this.handleSubmit} film={film}/>
+                    {this.state.deleting ?
+                    <div>
+                        <p> Are you sure? </p>
+                        <button onClick={this.onDelete}>Delete</button>
+                        <button onClick={this.onCancel}>Cancel</button> 
+                    </div> :
+                    <FilmForm handleSubmit={this.handleSubmit} film={film} showDelete={true} onDelete={this.onDeletePrompt} /> }
                 </Modal>
             </div>
         );
