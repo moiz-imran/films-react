@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { addNewFilm } from '../actions/films'
-import AddFilmModal from '../components/AddFilmModal'
+import { updateFilm } from '../actions/films'
+import EditFilmModal from '../components/EditFilmModal'
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -12,15 +12,15 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addFilm: (data) => {
-            dispatch(addNewFilm(data))
+        editFilm: (data) => {
+            dispatch(updateFilm(data))
         }
     }
 }
 
-const AddNewFilm = connect(
+const EditFilm = connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddFilmModal)
+)(EditFilmModal)
 
-export default AddNewFilm;
+export default EditFilm;

@@ -299,3 +299,12 @@ button {
     cursor: pointer;
     align-items: baseline;
 }
+
+.editorButton {
+    background-color: transparent;
+    border-radius: 1000px;
+    padding: 0px 0px 0px 5px;
+    cursor: pointer;
+    position: relative;
+    bottom: -2px
+}

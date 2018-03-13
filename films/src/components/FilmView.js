@@ -1,10 +1,23 @@
 import React from 'react';
 import FilmSearch from '../containers/FilmSearch';
-
-import './styles.css';
 import Header from './Header';
+import EditFilm from '../containers/EditFilm';
+import './styles.css';
 
 export class FilmView extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showEditModal: false,
+            showRatingModal: false
+        }
+
+        this.openEditModal = this.openEditModal.bind(this);
+        this.closeEditModal = this.closeEditModal.bind(this);
+        this.openRatingModal = this.openRatingModal.bind(this);
+        this.closeRatingModal = this.closeRatingModal.bind(this);
+    }
+
     componentDidMount() {
         this.props.fetchFilm(this.props.id)
     }
@@ -13,6 +26,22 @@ export class FilmView extends React.Component {
         if (nextProps.id !== this.props.id) {
             this.props.fetchFilm(nextProps.id)
         }
+    }
+
+    openEditModal() {
+        this.setState({ showEditModal: true });
+    }
+
+    closeEditModal() {
+        this.setState({ showEditModal: false });
+    }
+
+    openRatingModal() {
+        this.setState({ showRatingModal: true });
+    }
+
+    closeRatingModal() {
+        this.setState({ showRatingModal: false });
     }
 
     render() {
@@ -34,16 +63,21 @@ export class FilmView extends React.Component {
                     </div>
 
                     <section className="movieDetails">
-                        <h2 className="sectionTitle">{film.title}</h2>
+                        <h2 className="sectionTitle">{film.title}
+                            <button className='editorButton' onClick={this.openEditModal}><img src='https://www.materialui.co/materialIcons/image/edit_black_18x18.png' /></button>
+                        </h2>
                         <ul className="detailsList">
                             <li><span className="bold">Rating:</span> {film.average_score ? film.average_score.toFixed(2) : 'N/A'}</li>
-                            <li><span className="bold">Vote count:</span> {film.ratings ? film.ratings.length : 0}</li>
-                            <li><span className="bold">Year: </span> {film.year} </li>
+                            <li><span className="bold">Vote count:</span> {film.ratings ? film.ratings.length : 0}
+                                <button className='editorButton'><img src='https://www.materialui.co/materialIcons/content/add_circle_black_18x18.png' /></button>
+                            </li>
+                            <li><span className="bold">Year: </span> {film.year ? film.year : 'N/A'} </li>
                         </ul>
 
                         <p>{film.description}</p>
                     </section>
                 </div>
+                <EditFilm showModal={this.state.showEditModal} closeModal={this.closeEditModal} />
             </div>
         );
     }

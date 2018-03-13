@@ -25,7 +25,7 @@ class Header extends React.Component {
             <header>
                 <Link to={'/'}><h1>Tintash Movies</h1></Link>
                 <button className='headerButton' onClick={this.openModal}>Add a Movie</button>
-                <AddNewFilm openModal={this.state.showAddModal} closeModal={this.closeModal} />
+                <AddNewFilm showModal={this.state.showAddModal} closeModal={this.closeModal} />
             </header>
         );
     }
