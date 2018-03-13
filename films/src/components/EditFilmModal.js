@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Modal, { closeStyle } from 'simple-react-modal'
 import { withRouter } from 'react-router-dom'
 import FilmForm from './FilmForm'
@@ -33,7 +32,7 @@ class EditFilmModal extends React.Component {
     render() {
         const { showModal, closeModal, film } = this.props;
         return (
-            <div>
+            <div align='center'>
                 <Modal
                     show={showModal}
                     onClose={closeModal}

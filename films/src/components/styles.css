@@ -308,3 +308,8 @@ button {
     position: relative;
     bottom: -2px
 }
+
+.rating {
+    transform: scale(2, 2);
+    padding: 0px 0px 6px 0px;
+}

@@ -1,8 +1,9 @@
-import React from 'react';
-import FilmSearch from '../containers/FilmSearch';
-import Header from './Header';
-import EditFilm from '../containers/EditFilm';
-import './styles.css';
+import React from 'react'
+import FilmSearch from '../containers/FilmSearch'
+import Header from './Header'
+import EditFilm from '../containers/EditFilm'
+import AddRating from '../containers/AddRating'
+import './styles.css'
 
 export class FilmView extends React.Component {
     constructor(props) {
@@ -69,7 +70,7 @@ export class FilmView extends React.Component {
                         <ul className="detailsList">
                             <li><span className="bold">Rating:</span> {film.average_score ? film.average_score.toFixed(2) : 'N/A'}</li>
                             <li><span className="bold">Vote count:</span> {film.ratings ? film.ratings.length : 0}
-                                <button className='editorButton'><img src='https://www.materialui.co/materialIcons/content/add_circle_black_18x18.png' /></button>
+                                <button className='editorButton' onClick={this.openRatingModal}><img src='https://www.materialui.co/materialIcons/content/add_circle_black_18x18.png' /></button>
                             </li>
                             <li><span className="bold">Year: </span> {film.year ? film.year : 'N/A'} </li>
                         </ul>
@@ -78,6 +79,7 @@ export class FilmView extends React.Component {
                     </section>
                 </div>
                 <EditFilm showModal={this.state.showEditModal} closeModal={this.closeEditModal} />
+                <AddRating showModal={this.state.showRatingModal} closeModal={this.closeRatingModal} />
             </div>
         );
     }
