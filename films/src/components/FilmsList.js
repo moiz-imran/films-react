@@ -10,6 +10,12 @@ class FilmsList extends React.Component {
         }
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.allFilms !== this.props.allFilms) {
+            this.props.fetchFilms({ limit: 20 })
+        }
+    }
+
     componentDidMount() {
         this.props.fetchFilms({ limit:20 })
     }

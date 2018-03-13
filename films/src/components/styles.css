@@ -39,6 +39,22 @@ input[type='search']:focus::placeholder {
     color: rgb(39, 107, 146);
 }
 
+input, textarea {
+    /* position: relative; */
+    font-family: 'Open Sans',
+    sans-serif;
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 0 10px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #bdbdbd;
+    color: #000;
+    outline: none;
+    transition: all 0.35s ease-out; 
+    resize: none;
+    border-radius: 5px   
+}
+
 .searchResults {
     position: absolute;
     z-index: 9999;
@@ -246,7 +262,7 @@ ul a:hover {
     color: rgb(39, 107, 146);
 }
 
-button {
+.headerButton {
     background-color: #263238;
     border: none;
     color: white;
@@ -264,7 +280,22 @@ button {
     right: 5%;
 }
 
-button:hover {
+.headerButton:hover {
     background-color: #000;
     color: rgb(39, 107, 146);    
+}
+
+button {
+    background-color: #263238;
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 2px;
+    cursor: pointer;
+    align-items: baseline;
 }

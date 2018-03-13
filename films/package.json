@@ -6,12 +6,15 @@
     "axios": "^0.18.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-modal": "^3.3.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-search-input": "^0.11.3",
+    "react-year-picker": "^0.3.7",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "simple-react-modal": "^0.5.1"
   },
   "scripts": {
     "start": "react-scripts start",

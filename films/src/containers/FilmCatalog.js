@@ -4,7 +4,8 @@ import FilmsList from '../components/FilmsList'
 
 const mapStateToProps = state => {
     return {
-        films: state.filteredFilms
+        films: state.filteredFilms,
+        allFilms: state.films
     }
 }
 

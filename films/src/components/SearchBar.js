@@ -38,7 +38,6 @@ class SearchBar extends React.Component {
     render() {
         const { films } = this.props;
         const filteredresults = films.filter(createFilter(this.state.searchQuery, ['title', 'description']))
-        console.log(filteredresults)
         return (
             <div id='form'>
                 <SearchInput className="searchBar" onChange={this.searchUpdated} fuzzy={true} sortResults={true} value={this.state.searchQuery} />
