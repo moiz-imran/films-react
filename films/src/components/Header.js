@@ -1,6 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import AddNewFilm from '../containers/AddNewFilm'
+import UserInfo from '../containers/UserInfo'
 
 class Header extends React.Component {
     constructor(props) {
@@ -21,14 +23,23 @@ class Header extends React.Component {
         this.setState({ showAddModal: false });
     }
     render() {
+        const { isLoggedin } = this.props;
         return (
             <header>
                 <Link to={'/'}><h1>Tintash Movies</h1></Link>
-                {this.props.isLoggedin && <button className='headerButton' onClick={this.openModal}>Add a Movie</button>}
+                {isLoggedin && <UserInfo />}
                 <AddNewFilm showModal={this.state.showAddModal} closeModal={this.closeModal} />
             </header>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isLoggedin: state.userToken !== ''
+    }
+}
+
+Header = connect(mapStateToProps)(Header);
 
 export default Header;

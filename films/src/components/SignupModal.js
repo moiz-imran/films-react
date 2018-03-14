@@ -48,15 +48,15 @@ class SignupModal extends React.Component {
     }
 
     render() {
-        const { showModal, closeModal } = this.props;
+        const { showModal } = this.props;
         return (
             <div align='center'>
                 <Modal
                     show={showModal}
-                    onClose={closeModal}
+                    onClose={this.onClose}
                     transitionSpeed={1}
                 >
-                    <a style={closeStyle} onClick={closeModal}>X</a>
+                    <a style={closeStyle} onClick={this.onClose}>X</a>
                     <h2>Signup</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="email">Email:</label>

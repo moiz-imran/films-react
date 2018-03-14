@@ -67,7 +67,7 @@ export class FilmView extends React.Component {
         }
 
         const count = film.ratings ?
-            <button onClick={this.openViewRatingModal} className='ratingCount'>{film.ratings.length}</button> :
+            <a onClick={this.openViewRatingModal} className='ratingCount'>{film.ratings.length}</a> :
             0;
 
         return (
@@ -82,12 +82,16 @@ export class FilmView extends React.Component {
 
                     <section className="movieDetails">
                         <h2 className="sectionTitle">{film.title}
-                            <button className='editorButton' onClick={this.openEditModal}><img src='https://www.materialui.co/materialIcons/image/edit_black_18x18.png' alt={'Edit Film'} /></button>
+                            <a className='svg' onClick={this.openEditModal}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" /></svg>
+                            </a>
                         </h2>
                         <ul className="detailsList">
                             <li><span className="bold">Rating:</span> {film.average_score ? film.average_score.toFixed(2) : 'N/A'}</li>
                             <li><span className="bold">Vote count:</span> {count}
-                                <button className='editorButton' onClick={this.openRatingModal}><img src='https://www.materialui.co/materialIcons/content/add_circle_black_18x18.png' alt={'Add Rating'} /></button>
+                                <a className='svg' onClick={this.openRatingModal}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" /></svg>
+                                </a>
                             </li>
                         </ul>
 

@@ -42,7 +42,7 @@ class LoginModal extends React.Component {
     }
 
     render() {
-        const { showModal, closeModal } = this.props;
+        const { showModal } = this.props;
         return (
             <div align='center'>
                 <Modal

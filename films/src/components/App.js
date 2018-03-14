@@ -13,7 +13,7 @@ class App extends React.Component {
 
         return (
             <div className='container'>
-                <Header isLoggedin={isLoggedin}/>
+                <Header />
                 {isLoggedin ? 
                 <div>
                     <FilmSearch />
