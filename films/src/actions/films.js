@@ -1,13 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiODM2MjA2YTUtOTkzNS00ZTNmLWE5YzktYzdhNDYxNDliYjdkIiwiaWF0IjoxNTIwNDI4MDA5fQ.HHWAmaIDlprWIRbZo7j0xLFyEfsr5lnzicSKcbQ4JrE';
 const url = 'http://localhost:8000/api/films';
-const authHeader = { Authorization: 'JWT ' + jwtToken }
-
-const instance = axios.create({
-    baseURL: url,
-    headers: authHeader
-});
 
 export const fetchFilteredFilms = ({
     limit = 20,
@@ -17,8 +10,8 @@ export const fetchFilteredFilms = ({
     min_year = '',
     searchString = ''
 }) => {
-    return dispatch => {
-        instance.get(url, {
+    return (dispatch, getState) => {
+        axios.get(url, {
             params: {
                 limit: limit,
                 offset: offset,
@@ -27,6 +20,9 @@ export const fetchFilteredFilms = ({
                 min_year: min_year,
                 title: searchString,
                 description: searchString
+            },
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
             }
         }).then(({ data }) => {
             dispatch(fetchSearchAction(data));
@@ -35,10 +31,13 @@ export const fetchFilteredFilms = ({
 }
 
 export const fetchFilms = () => {
-    return dispatch => {
-        instance.get(url, {
+    return (dispatch, getState) => {
+        axios.get(url, {
             params: {
                 limit: 10000
+            },
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
             }
         }).then(({ data: { results } }) => {
             dispatch(fetchFilmsAction(results));
@@ -61,8 +60,12 @@ export const fetchFilmsAction = (data) => {
 }
 
 export const fetchFilmById = (id) => {
-    return dispatch => {
-        instance.get(`${url}/${id}`)
+    return (dispatch, getState) => {
+        axios.get(`${url}/${id}`, {
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
+            }
+        })
         .then(({ data }) => {
             dispatch(fetchFilmByIdAction(data));
         }).catch(error => console.log(error));
@@ -77,9 +80,13 @@ export const fetchFilmByIdAction = (data) => {
 }
 
 export const addNewFilm = ({ title, description = '', year = '', img_url = '' }) => {
-    return dispatch => {
-        instance.post(url, {
+    return (dispatch, getState) => {
+        axios.post(url, {
             title, description, year, img_url,
+        }, {
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
+            }
         }).then(({ data }) => {
             dispatch(addNewFilmAction(data));
             dispatch(fetchFilmByIdAction(data));
@@ -95,9 +102,13 @@ export const addNewFilmAction = (data) => {
 }
 
 export const updateFilm = ({ id, title = '', description = '', year = '', img_url = '' }) => {
-    return dispatch => {
-        instance.put(`${url}/${id}`, {
+    return (dispatch, getState) => {
+        axios.put(`${url}/${id}`, {
             title, description, year, img_url,
+        }, {
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
+            }
         }).then(({ data }) => {
             dispatch(updateFilmAction(data));
             dispatch(fetchFilmByIdAction(data));
@@ -113,8 +124,12 @@ export const updateFilmAction = (data) => {
 }
 
 export const deleteFilm = (id) => {
-    return dispatch => {
-        instance.delete(`${url}/${id}`)
+    return (dispatch, getState) => {
+        axios.delete(`${url}/${id}`, {
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
+            }
+        })
         .then(() => {
             dispatch(deleteFilmAction(id))
         })
@@ -130,12 +145,14 @@ export const deleteFilmAction = (id) => {
 }
 
 export const loadMore = (nextUrl) => {
-    return dispatch => {
-        instance.get(nextUrl)
-            .then(({ data }) => {
-                dispatch(loadMoreAction(data));
-            })
-            .catch(error => console.log(error));
+    return (dispatch, getState) => {
+        axios.get(nextUrl, {
+            headers: {
+                Authorization: 'JWT ' + getState().userToken
+            }
+        }).then(({ data }) => {
+            dispatch(loadMoreAction(data));
+        }).catch(error => console.log(error));
     }
 }
 

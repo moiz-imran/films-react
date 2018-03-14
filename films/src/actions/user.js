@@ -1,13 +1,10 @@
 import axios from 'axios';
 
 const url = 'http://localhost:8000/api/accounts';
-const instance = axios.create({
-    baseURL: 'http://localhost:8000/api/accounts',
-});
 
 export const fetchProfile = () => {
     return (dispatch, getState) => {
-        instance.get(url + '/profile', {
+        axios.get(url + '/profile', {
             headers: {
                 Authorization: 'JWT ' + getState().userToken
             },
@@ -26,7 +23,7 @@ export const fetchProfileAction = (data) => {
 
 export const updateProfile = ({ first_name, last_name, email }) => {
     return (dispatch, getState) => {
-        instance.put(url + '/profile', {
+        axios.put(url + '/profile', {
             first_name, last_name, email            
         }, {
             headers: {
@@ -40,7 +37,7 @@ export const updateProfile = ({ first_name, last_name, email }) => {
 
 export const changePassword = ({ oldPassword, newPassword1, newPassword2 }) => {
     return (dispatch, getState) => {
-        instance.put(url + '/profile/password', {
+        axios.put(url + '/profile/password', {
             oldPassword, newPassword1, newPassword2
         }, {
             headers: {
@@ -54,7 +51,7 @@ export const changePassword = ({ oldPassword, newPassword1, newPassword2 }) => {
 
 export const logIn = ({ email, password }) => {
     return dispatch => {
-        instance.post(url + '/login', {
+        axios.post(url + '/login', {
             email, password
         }, {
             credentials: 'include'
@@ -82,7 +79,7 @@ export const errorReceived = message => {
 
 export const signUp = ({ email, username, password1, password2 }) => {
     return dispatch => {
-        instance.post(url + '/signup', {
+        axios.post(url + '/signup', {
             email, username, password1, password2
         }).then(({ data }) => {
             dispatch(setUserToken(data));
@@ -94,7 +91,7 @@ export const signUp = ({ email, username, password1, password2 }) => {
 
 export const logOut = () => {
     return (dispatch, getState) => {
-        instance.get(url + '/logout', {
+        axios.get(url + '/logout', {
             headers: {
                 Authorization: 'JWT ' + getState().userToken
             },
