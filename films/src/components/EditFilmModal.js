@@ -39,7 +39,7 @@ class EditFilmModal extends React.Component {
     }
 
     onDelete() {
-        const { history, deleteFilm, film } = this.props;
+        const { deleteFilm, film } = this.props;
         deleteFilm(film.id);
     }
 
@@ -53,7 +53,7 @@ class EditFilmModal extends React.Component {
     }
 
     render() {
-        const { showModal, closeModal, film } = this.props;
+        const { showModal, film } = this.props;
         return (
             <div align='center'>
                 <Modal

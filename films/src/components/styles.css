@@ -302,8 +302,7 @@ button {
 
 .editorButton {
     background-color: transparent;
-    border-radius: 1000px;
-    padding: 0px 0px 0px 5px;
+    padding: 0px 0px 0px 8px;
     cursor: pointer;
     position: relative;
     bottom: -2px
@@ -312,4 +311,17 @@ button {
 .rating {
     transform: scale(2, 2);
     padding: 0px 0px 6px 0px;
+}
+
+.ratingCount {
+    background-color: transparent;
+    padding: 0 0 0 0;
+    color: #000; 
+    cursor: pointer;
+    text-decoration-line: underline;
+    font-weight: 200;
+}
+
+.ratingCount:hover {
+    color: rgb(39, 107, 146);
 }

@@ -54,12 +54,15 @@ export class FilmView extends React.Component {
             return <p>loading</p>;
         }
 
+        const count = film.ratings ?
+            <button className='ratingCount'>{film.ratings.length}</button> :
+            0;
+
         return (
             <div className="container">
                 <Header />
                 <FilmSearch />
 
-                {}
                 <div className="moviePage">
                     <div className="poster">
                         <img src={film.img_url === null ? 'https://via.placeholder.com/300x450?text=Placeholder+Image' : film.img_url} alt={`${film.title} poster`} className="posterImg" />
@@ -67,14 +70,13 @@ export class FilmView extends React.Component {
 
                     <section className="movieDetails">
                         <h2 className="sectionTitle">{film.title}
-                            <button className='editorButton' onClick={this.openEditModal}><img src='https://www.materialui.co/materialIcons/image/edit_black_18x18.png' /></button>
+                            <button className='editorButton' onClick={this.openEditModal}><img src='https://www.materialui.co/materialIcons/image/edit_black_18x18.png' alt={'Edit Film'} /></button>
                         </h2>
                         <ul className="detailsList">
                             <li><span className="bold">Rating:</span> {film.average_score ? film.average_score.toFixed(2) : 'N/A'}</li>
-                            <li><span className="bold">Vote count:</span> {film.ratings ? film.ratings.length : 0}
-                                <button className='editorButton' onClick={this.openRatingModal}><img src='https://www.materialui.co/materialIcons/content/add_circle_black_18x18.png' /></button>
+                            <li><span className="bold">Vote count:</span> {count}
+                                <button className='editorButton' onClick={this.openRatingModal}><img src='https://www.materialui.co/materialIcons/content/add_circle_black_18x18.png' alt={'Add Rating'} /></button>
                             </li>
-                            <li><span className="bold">Year: </span> {film.year ? film.year : 'N/A'} </li>
                         </ul>
 
                         <p>{film.description}</p>

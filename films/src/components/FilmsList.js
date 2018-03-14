@@ -37,7 +37,7 @@ class FilmsList extends React.Component {
                         {results.map(film => {
                             return (
                                 <Link className='movieLink' key={film.id} to={`/movie/${film.id}`}>
-                                    <img src={film.img_url === null ? 'https://via.placeholder.com/300x450?text=Placeholder+Image' : film.img_url} className="imgResponsive" />
+                                    <img src={film.img_url === null ? 'https://via.placeholder.com/300x450?text=Placeholder+Image' : film.img_url} alt={`${film.title} Poster`} className="imgResponsive" />
 
                                     <div className="movieInfo">
                                         <h3>{film.title}</h3>
