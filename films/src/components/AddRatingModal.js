@@ -15,7 +15,7 @@ class AddRatingModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ((nextProps.film.id === this.props.film.id) && (nextProps.film.ratings !== this.props.film.ratings)) {
+        if ((nextProps.film.id === this.props.film.id) && (nextProps.film.ratings.length > this.props.film.ratings.length)) {
             this.setState({ ratingAdded: true })
         }
     }

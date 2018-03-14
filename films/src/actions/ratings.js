@@ -25,7 +25,7 @@ export const updateRating = ({ id, filmId, score }) => {
         instance.put(`${url}/${id}`, {
             filmId, score,
         }).then(({ data }) => {
-            dispatch(fetchFilmById(filmId));
+            dispatch(fetchFilmById(data.filmId));
         }).catch(error => console.log(error));
     }
 }

@@ -4,19 +4,23 @@ import Header from './Header'
 import EditFilm from '../containers/EditFilm'
 import AddRating from '../containers/AddRating'
 import './styles.css'
+import ViewRatings from '../containers/ViewRatings';
 
 export class FilmView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             showEditModal: false,
-            showRatingModal: false
+            showRatingModal: false,
+            showViewRatingsModal: false
         }
 
         this.openEditModal = this.openEditModal.bind(this);
         this.closeEditModal = this.closeEditModal.bind(this);
         this.openRatingModal = this.openRatingModal.bind(this);
         this.closeRatingModal = this.closeRatingModal.bind(this);
+        this.openViewRatingModal = this.openViewRatingModal.bind(this);
+        this.closeViewRatingModal = this.closeViewRatingModal.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +51,14 @@ export class FilmView extends React.Component {
         this.setState({ showRatingModal: false });
     }
 
+    openViewRatingModal() {
+        this.setState({ showViewRatingsModal: true });
+    }
+
+    closeViewRatingModal() {
+        this.setState({ showViewRatingsModal: false });
+    }
+
     render() {
         const { film } = this.props;
 
@@ -55,7 +67,7 @@ export class FilmView extends React.Component {
         }
 
         const count = film.ratings ?
-            <button className='ratingCount'>{film.ratings.length}</button> :
+            <button onClick={this.openViewRatingModal} className='ratingCount'>{film.ratings.length}</button> :
             0;
 
         return (
@@ -84,6 +96,7 @@ export class FilmView extends React.Component {
                 </div>
                 <EditFilm showModal={this.state.showEditModal} closeModal={this.closeEditModal} />
                 <AddRating showModal={this.state.showRatingModal} closeModal={this.closeRatingModal} />
+                <ViewRatings showModal={this.state.showViewRatingsModal} closeModal={this.closeViewRatingModal} />
             </div>
         );
     }
