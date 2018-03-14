@@ -3,7 +3,6 @@ import axios from 'axios';
 const url = 'http://localhost:8000/api/accounts';
 const instance = axios.create({
     baseURL: 'http://localhost:8000/api/accounts',
-    // withCredentials: true
 });
 
 export const fetchProfile = () => {
@@ -61,7 +60,9 @@ export const logIn = ({ email, password }) => {
             credentials: 'include'
         }).then(({ data }) => {
             dispatch(setUserToken(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: {data} }) => {
+            dispatch(errorReceived(data.message));            
+        });
     }
 }
 
@@ -72,13 +73,22 @@ export const setUserToken = (data) => {
     }
 }
 
+export const errorReceived = message => {
+    return {
+        type: 'ERROR',
+        msg: message
+    }
+}
+
 export const signUp = ({ email, username, password1, password2 }) => {
     return dispatch => {
         instance.post(url + '/signup', {
             email, username, password1, password2
         }).then(({ data }) => {
             dispatch(setUserToken(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: {data} }) => {
+            dispatch(errorReceived(data.message));            
+        });
     }
 }
 

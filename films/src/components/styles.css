@@ -282,7 +282,6 @@ ul a:hover {
 
 .headerButton:hover {
     background-color: #000;
-    color: rgb(39, 107, 146);    
 }
 
 button {
@@ -334,4 +333,22 @@ button {
     color: rgb(233, 14, 14);
     cursor: pointer;
     font-weight: 600;    
+}
+
+.logsignbuttons {
+    position: absolute;
+    left: 42%;
+    top: 50%;
+}
+
+.logButton:hover {
+    background-color: #000;
+}
+
+.signButton:hover {
+    background-color: #000;
+}
+
+.failmsg {
+    color: rgb(233, 14, 14);
 }
