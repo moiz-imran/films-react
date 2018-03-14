@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { signUp } from '../actions/user'
+import { signUp, resetError } from '../actions/user'
 import SignupModal from '../components/SignupModal'
 
 const mapStateToProps = state => {
@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
     return {
         signUp: (data) => {
             dispatch(signUp(data));
+        },
+        resetError: () => {
+            dispatch(resetError());
         }
     }
 }

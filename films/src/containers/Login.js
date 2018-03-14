@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { logIn } from '../actions/user'
+import { logIn, resetError } from '../actions/user'
 import LoginModal from '../components/LoginModal'
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
     return {
         logIn: (data) => {
             dispatch(logIn(data));
+        },
+        resetError: () => {
+            dispatch(resetError());
         }
     }
 }

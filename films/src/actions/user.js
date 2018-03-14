@@ -115,3 +115,10 @@ export const logOutAction = () => {
         type: 'LOGOUT_USER'
     }
 }
+
+export const resetError = () => {
+    return {
+        type: 'RESET_USER_ERROR',
+        msg: ''
+    }
+}

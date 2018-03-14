@@ -7,16 +7,19 @@ class AddFilmModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            filmAdded: false
+            failMessage: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onClose = this.onClose.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.film !== this.props.film) {
-            this.setState({ filmAdded: true })
-            this.props.history.push(`/movie/${nextProps.film.id}`)
+            this.props.history.push(`/movie/${nextProps.film.id}`);
+        } else if (nextProps.error === 'Validation isUrl on img_url failed') {
+            this.setState({ failMessage: 'Image URL is invalid.' });
+            this.props.resetError();
         }
     }
 
@@ -31,8 +34,11 @@ class AddFilmModal extends React.Component {
         }
 
         this.props.addFilm(filmData);
+    }
 
+    onClose() {
         this.props.closeModal();
+        this.setState({ failMessage: '' });
     }
 
     render() {
@@ -41,12 +47,12 @@ class AddFilmModal extends React.Component {
             <div align='center'>
                 <Modal
                     show={showModal}
-                    onClose={closeModal}
+                    onClose={this.onClose}
                     transitionSpeed={1}
                 >
-                    <a style={closeStyle} onClick={closeModal}>X</a>
+                    <a style={closeStyle} onClick={this.onClose}>X</a>
                     <h2>Add New Film</h2>
-                    <FilmForm handleSubmit={this.handleSubmit} />
+                    <FilmForm handleSubmit={this.handleSubmit} error={this.state.failMessage} />
                 </Modal>
             </div>
         );

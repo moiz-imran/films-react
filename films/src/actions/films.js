@@ -181,3 +181,10 @@ export const errorReceived = message => {
         msg: message
     }
 }
+
+export const resetError = () => {
+    return {
+        type: 'RESET_FILMS_ERROR',
+        msg: ''
+    }
+}

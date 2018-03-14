@@ -55,3 +55,10 @@ export const errorReceived = message => {
         msg: message
     }
 }
+
+export const resetError = () => {
+    return {
+        type: 'RESET_RATINGS_ERROR',
+        msg: ''
+    }
+}

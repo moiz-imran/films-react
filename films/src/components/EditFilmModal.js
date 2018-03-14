@@ -7,8 +7,8 @@ class EditFilmModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            filmEditted: false,
-            deleting: false
+            deleting: false,
+            failMessage: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,6 +16,16 @@ class EditFilmModal extends React.Component {
         this.onDeletePrompt = this.onDeletePrompt.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.error);
+        if (nextProps.film !== this.props.film) {
+            this.props.closeModal();
+        } else if (nextProps.error === 'Validation isUrl on img_url failed') {
+            this.setState({ failMessage: 'Image URL is invalid.' });
+            this.props.resetError();
+        }
     }
 
     handleSubmit(e) {
@@ -30,8 +40,6 @@ class EditFilmModal extends React.Component {
         }
 
         this.props.editFilm(filmData);
-
-        this.props.closeModal();
     }
 
     onDeletePrompt() {
@@ -69,7 +77,7 @@ class EditFilmModal extends React.Component {
                         <button onClick={this.onDelete}>Delete</button>
                         <button onClick={this.onCancel}>Cancel</button> 
                     </div> :
-                    <FilmForm handleSubmit={this.handleSubmit} film={film} showDelete={true} onDelete={this.onDeletePrompt} /> }
+                    <FilmForm handleSubmit={this.handleSubmit} film={film} showDelete={true} onDelete={this.onDeletePrompt} error={this.state.failMessage} /> }
                 </Modal>
             </div>
         );

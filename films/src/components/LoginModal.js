@@ -10,6 +10,7 @@ class LoginModal extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onClose = this.onClose.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -17,7 +18,10 @@ class LoginModal extends React.Component {
             this.props.history.push('/');
         } else if (nextProps.error === 'Authentication failed. Wrong password.') {
             this.setState({ failMessage: 'Password does not match!' });
-        } else if (nextProps.error === 'Authentication failed.User not found.') {
+            this.props.resetError();
+        } else if (nextProps.error === 'Authentication failed. User not found.') {
+            this.setState({ failMessage: 'User does not exist!' });
+            this.props.resetError();
         }
     }
 
@@ -32,16 +36,21 @@ class LoginModal extends React.Component {
         this.props.logIn(userData);
     }
 
+    onClose() {
+        this.setState({ failMessage: '' });
+        this.props.closeModal();
+    }
+
     render() {
         const { showModal, closeModal } = this.props;
         return (
             <div align='center'>
                 <Modal
                     show={showModal}
-                    onClose={closeModal}
+                    onClose={this.onClose}
                     transitionSpeed={1}
                 >
-                    <a style={closeStyle} onClick={closeModal}>X</a>
+                    <a style={closeStyle} onClick={this.onClose}>X</a>
                     <h2>Login</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="email">email:</label>

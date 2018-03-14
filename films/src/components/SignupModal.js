@@ -10,6 +10,7 @@ class SignupModal extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onClose = this.onClose.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -17,8 +18,10 @@ class SignupModal extends React.Component {
             this.props.history.push('/');
         } else if (nextProps.error === 'username must be unique') {
             this.setState({ failMessage: 'Username taken!' });
+            this.props.resetError();
         } else if (nextProps.error === 'email must be unique') {
             this.setState({ failMessage: 'Email already registered' });
+            this.props.resetError();
         }
     }
 
@@ -37,6 +40,11 @@ class SignupModal extends React.Component {
         } else {
             this.setState({ failMessage: 'Passwords do not match!' });
         }
+    }
+
+    onClose() {
+        this.props.closeModal();
+        this.setState({ failMessage: '' });
     }
 
     render() {

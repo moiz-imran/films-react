@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { updateFilm, deleteFilm } from '../actions/films'
+import { updateFilm, deleteFilm, resetError } from '../actions/films'
 import { withRouter } from 'react-router-dom';
 import EditFilmModal from '../components/EditFilmModal'
 
@@ -7,7 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         film: state.film,
         showModal: ownProps.showModal,
-        closeModal: ownProps.closeModal
+        closeModal: ownProps.closeModal,
+        error: state.filmsErrorMessage
     }
 }
 
@@ -18,7 +19,10 @@ const mapDispatchToProps = dispatch => {
         },
         deleteFilm: (id) => {
             dispatch(deleteFilm(id))
-        }
+        },
+        resetError: () => {
+            dispatch(resetError())
+        } 
     }
 }
 
