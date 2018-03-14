@@ -5,7 +5,10 @@ import SingleRating from './SingleRating'
 class ViewRatingsModal extends React.Component {
     render() {
         const { showModal, film, editRating, deleteRating, closeModal } = this.props;
-        const ratings = film.ratings.slice().sort(function (a, b) { return a.id > b.id })
+        const ratings = film.ratings ? 
+            film.ratings.slice().sort(function (a, b) { return a.id > b.id }) :
+            []
+
         return (
             <div align='center'>
                 <Modal
