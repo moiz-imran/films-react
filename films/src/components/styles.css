@@ -167,6 +167,7 @@ input, textarea {
 .movieLink:hover .movieInfo {
     opacity: 1;
     visibility: visible;
+    transition: all 0.35s ease-out;
 }
 
 .moviePage {

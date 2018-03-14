@@ -41,7 +41,7 @@ class FilmsList extends React.Component {
 
                                     <div className="movieInfo">
                                         <h3>{film.title}</h3>
-                                        <p>{film.average_score ? film.average_score.toFixed(2) : 'N/A'}</p>
+                                        <p>{film.year}</p>
                                     </div>
                                 </Link>
                             )
