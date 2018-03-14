@@ -10,7 +10,9 @@ export const fetchProfile = () => {
             },
         }).then(({ data }) => {
             dispatch(fetchProfileAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -31,7 +33,9 @@ export const updateProfile = ({ first_name, last_name, email }) => {
             }
         }).then(({ data }) => {
             dispatch(fetchProfileAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -45,7 +49,9 @@ export const changePassword = ({ oldPassword, newPassword1, newPassword2 }) => {
             }
         }).then(({ data }) => {
             dispatch(setUserToken(data));            
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -72,7 +78,7 @@ export const setUserToken = (data) => {
 
 export const errorReceived = message => {
     return {
-        type: 'ERROR',
+        type: 'USER_ERROR',
         msg: message
     }
 }
@@ -98,7 +104,9 @@ export const logOut = () => {
         })
         .then(() => {
             dispatch(logOutAction())
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 

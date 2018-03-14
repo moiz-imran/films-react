@@ -5,7 +5,7 @@ import SignupModal from '../components/SignupModal'
 const mapStateToProps = state => {
     return {
         userToken: state.userToken,
-        error: state.errorMessage
+        error: state.userErrorMessage
     }
 }
 

@@ -26,7 +26,9 @@ export const fetchFilteredFilms = ({
             }
         }).then(({ data }) => {
             dispatch(fetchSearchAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -41,7 +43,9 @@ export const fetchFilms = () => {
             }
         }).then(({ data: { results } }) => {
             dispatch(fetchFilmsAction(results));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -68,7 +72,9 @@ export const fetchFilmById = (id) => {
         })
         .then(({ data }) => {
             dispatch(fetchFilmByIdAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -90,7 +96,9 @@ export const addNewFilm = ({ title, description = '', year = '', img_url = '' })
         }).then(({ data }) => {
             dispatch(addNewFilmAction(data));
             dispatch(fetchFilmByIdAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -112,7 +120,9 @@ export const updateFilm = ({ id, title = '', description = '', year = '', img_ur
         }).then(({ data }) => {
             dispatch(updateFilmAction(data));
             dispatch(fetchFilmByIdAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -129,11 +139,11 @@ export const deleteFilm = (id) => {
             headers: {
                 Authorization: 'JWT ' + getState().userToken
             }
-        })
-        .then(() => {
+        }).then(() => {
             dispatch(deleteFilmAction(id))
-        })
-        .catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -152,7 +162,9 @@ export const loadMore = (nextUrl) => {
             }
         }).then(({ data }) => {
             dispatch(loadMoreAction(data));
-        }).catch(error => console.log(error));
+        }).catch(({ response: { data } }) => {
+            dispatch(errorReceived(data.message));
+        });
     }
 }
 
@@ -160,5 +172,12 @@ export const loadMoreAction = (data) => {
     return {
         type: 'LOAD_MORE',
         films: data
+    }
+}
+
+export const errorReceived = message => {
+    return {
+        type: 'FILMS_ERROR',
+        msg: message
     }
 }

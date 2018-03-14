@@ -5,7 +5,7 @@ import LoginModal from '../components/LoginModal'
 const mapStateToProps = (state, ownProps) => {
     return {
         userToken: state.userToken,
-        error: state.errorMessage
+        error: state.userErrorMessage
     }
 }
 

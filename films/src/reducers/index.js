@@ -4,7 +4,10 @@ import film from './film'
 import userProfile from './userProfile'
 import userToken from './userToken'
 import filteredFilms from './filteredFilms'
-import errorMessage from './errorMessage'
+import userErrorMessage from './userErrorMessage'
+import filmsErrorMessage from './filmsErrorMessage'
+import ratingsErrorMessage from './ratingsErrorMessage'
+
 
 const filmsApp = combineReducers({
     films,
@@ -12,7 +15,9 @@ const filmsApp = combineReducers({
     userProfile,
     userToken,
     filteredFilms,
-    errorMessage
+    userErrorMessage,
+    filmsErrorMessage,
+    ratingsErrorMessage
 })
 
 export default filmsApp
