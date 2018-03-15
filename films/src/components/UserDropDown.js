@@ -4,6 +4,7 @@ import 'react-dd-menu/dist/react-dd-menu.css'
 import 'react-dd-menu/dist/react-dd-menu.min.css'
 import AddNewFilm from '../containers/AddNewFilm'
 import ChangePassword from '../containers/ChangePassword';
+import EditUser from '../containers/EditUser';
 
 class UserDropDown extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class UserDropDown extends React.Component {
             isMenuOpen: false,
             showAddModal: false,
             showPasswordModal: false,
+            showUpdateModal: false,
         };
 
         this.click = this.click.bind(this);
@@ -22,6 +24,8 @@ class UserDropDown extends React.Component {
         this.closeAddModal = this.closeAddModal.bind(this);
         this.openPasswordModal = this.openPasswordModal.bind(this);
         this.closePasswordModal = this.closePasswordModal.bind(this);
+        this.openUpdateModal = this.openUpdateModal.bind(this);
+        this.closeUpdateModal = this.closeUpdateModal.bind(this);
     }
 
     openAddModal() {
@@ -38,6 +42,14 @@ class UserDropDown extends React.Component {
 
     closePasswordModal() {
         this.setState({ showPasswordModal: false });
+    }
+
+    openUpdateModal() {
+        this.setState({ showUpdateModal: true });
+    }
+
+    closeUpdateModal() {
+        this.setState({ showUpdateModal: false });
     }
 
     componentDidMount() {
@@ -86,12 +98,13 @@ class UserDropDown extends React.Component {
                     <li role="separator" className="separator" />
                     <li><button type="button" onClick={this.openAddModal}>Add movie</button></li>
                     <li role="separator" className="separator" />
-                    <li><button type="button" onClick={this.click}>Update Profile</button></li>
+                    <li><button type="button" onClick={this.openUpdateModal}>Update Profile</button></li>
                     <li><button type="button" onClick={this.openPasswordModal}>Change Password</button></li>
                     <li><button type="button" onClick={this.onLogout}>Logout</button></li>
                 </DropdownMenu>
                 <AddNewFilm showModal={this.state.showAddModal} closeModal={this.closeAddModal} />
                 <ChangePassword showModal={this.state.showPasswordModal} closeModal={this.closePasswordModal} />
+                <EditUser showModal={this.state.showUpdateModal} closeModal={this.closeUpdateModal} />
             </div>
         );
     }
