@@ -6,11 +6,13 @@ class LoginModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            failMessage: ''
+            failMessage: '',
+            rememberCheck: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onClose = this.onClose.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -25,6 +27,10 @@ class LoginModal extends React.Component {
         }
     }
 
+    onSelect() {
+        this.setState({ rememberCheck: true });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -33,6 +39,9 @@ class LoginModal extends React.Component {
             password: e.target.password.value,
         }
 
+        const storageState = this.state.rememberCheck ? 'local' : 'session';
+
+        this.props.setStorageState(storageState);
         this.props.logIn(userData);
     }
 
@@ -59,7 +68,10 @@ class LoginModal extends React.Component {
 
                         <label htmlFor="password">password:</label>
                         <input id="password" name="password" type="password" required />
-                        <br />                        
+                        <br />
+
+                        <label><input id='keeplog' name='keeplog' type='checkbox' onChange={this.onSelect} />Remember me</label>
+
                         <p className='failmsg'>{this.state.failMessage}</p>
                         <button type='submit'>Submit</button>                        
                     </form>

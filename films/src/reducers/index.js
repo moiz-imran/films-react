@@ -7,7 +7,7 @@ import filteredFilms from './filteredFilms'
 import userErrorMessage from './userErrorMessage'
 import filmsErrorMessage from './filmsErrorMessage'
 import ratingsErrorMessage from './ratingsErrorMessage'
-
+import storageState from './storageState'
 
 const filmsApp = combineReducers({
     films,
@@ -17,7 +17,8 @@ const filmsApp = combineReducers({
     filteredFilms,
     userErrorMessage,
     filmsErrorMessage,
-    ratingsErrorMessage
+    ratingsErrorMessage,
+    storageState
 })
 
 export default filmsApp

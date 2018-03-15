@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import { logIn, resetError } from '../actions/user'
+import { setStorageState } from '../actions/storageState'
 import LoginModal from '../components/LoginModal'
 
 const mapStateToProps = (state, ownProps) => {
     return {
         userToken: state.userToken,
-        error: state.userErrorMessage
+        error: state.userErrorMessage,
     }
 }
 
@@ -16,6 +17,9 @@ const mapDispatchToProps = dispatch => {
         },
         resetError: () => {
             dispatch(resetError());
+        },
+        setStorageState: (state) => {
+            dispatch(setStorageState(state));
         }
     }
 }

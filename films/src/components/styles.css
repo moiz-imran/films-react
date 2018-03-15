@@ -39,6 +39,10 @@ input[type='search']:focus::placeholder {
     color: rgb(39, 107, 146);
 }
 
+input[type='checkbox'] {
+    width: 6%;
+}
+
 input, textarea {
     /* position: relative; */
     font-family: 'Open Sans',
