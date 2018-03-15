@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import App from './components/App';
 import FilmPage from './containers/FilmPage'
 import store from './store'
+import './styles.css'
 
 render(
     <BrowserRouter>

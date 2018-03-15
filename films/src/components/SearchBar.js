@@ -2,8 +2,6 @@ import React from 'react'
 import SearchInput, { createFilter } from 'react-search-input'
 import SearchResults from './SearchResults'
 
-import './styles.css'
-
 class SearchBar extends React.Component {
     constructor(props) {
         super(props);

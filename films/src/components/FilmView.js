@@ -3,7 +3,6 @@ import FilmSearch from '../containers/FilmSearch'
 import Header from './Header'
 import EditFilm from '../containers/EditFilm'
 import AddRating from '../containers/AddRating'
-import './styles.css'
 import ViewRatings from '../containers/ViewRatings';
 
 export class FilmView extends React.Component {

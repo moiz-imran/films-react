@@ -5,8 +5,6 @@ import FilmCatalog from '../containers/FilmCatalog'
 import Header from './Header'
 import WelcomePage from './WelcomePage';
 
-import './styles.css'
-
 class App extends React.Component {
     render() {
         const { isLoggedin } = this.props;

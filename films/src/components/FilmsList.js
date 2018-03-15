@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-import './styles.css'
-
 class FilmsList extends React.Component {
     constructor(props) {
         super(props);

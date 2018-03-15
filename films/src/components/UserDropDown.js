@@ -16,7 +16,6 @@ class UserDropDown extends React.Component {
             showUpdateModal: false,
         };
 
-        this.click = this.click.bind(this);
         this.toggleMenu = this.toggleMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
         this.onLogout = this.onLogout.bind(this);
@@ -66,10 +65,6 @@ class UserDropDown extends React.Component {
 
     closeMenu() {
         this.setState({ isMenuOpen: false });
-    }
-
-    click() {
-        console.log('You clicked an item');
     }
 
     render() {
