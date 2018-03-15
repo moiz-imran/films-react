@@ -3,6 +3,7 @@ import DropdownMenu from 'react-dd-menu'
 import 'react-dd-menu/dist/react-dd-menu.css'
 import 'react-dd-menu/dist/react-dd-menu.min.css'
 import AddNewFilm from '../containers/AddNewFilm'
+import ChangePassword from '../containers/ChangePassword';
 
 class UserDropDown extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class UserDropDown extends React.Component {
         this.state = {
             isMenuOpen: false,
             showAddModal: false,
+            showPasswordModal: false,
         };
 
         this.click = this.click.bind(this);
@@ -18,6 +20,8 @@ class UserDropDown extends React.Component {
         this.onLogout = this.onLogout.bind(this);
         this.openAddModal = this.openAddModal.bind(this);
         this.closeAddModal = this.closeAddModal.bind(this);
+        this.openPasswordModal = this.openPasswordModal.bind(this);
+        this.closePasswordModal = this.closePasswordModal.bind(this);
     }
 
     openAddModal() {
@@ -26,6 +30,14 @@ class UserDropDown extends React.Component {
 
     closeAddModal() {
         this.setState({ showAddModal: false });
+    }
+
+    openPasswordModal() {
+        this.setState({ showPasswordModal: true });
+    }
+
+    closePasswordModal() {
+        this.setState({ showPasswordModal: false });
     }
 
     componentDidMount() {
@@ -75,10 +87,11 @@ class UserDropDown extends React.Component {
                     <li><button type="button" onClick={this.openAddModal}>Add movie</button></li>
                     <li role="separator" className="separator" />
                     <li><button type="button" onClick={this.click}>Update Profile</button></li>
-                    <li><button type="button" onClick={this.click}>Change Password</button></li>
+                    <li><button type="button" onClick={this.openPasswordModal}>Change Password</button></li>
                     <li><button type="button" onClick={this.onLogout}>Logout</button></li>
                 </DropdownMenu>
-                <AddNewFilm showModal={this.state.showAddModal} closeModal={this.closeAddModal} />                
+                <AddNewFilm showModal={this.state.showAddModal} closeModal={this.closeAddModal} />
+                <ChangePassword showModal={this.state.showPasswordModal} closeModal={this.closePasswordModal} />
             </div>
         );
     }
