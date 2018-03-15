@@ -143,6 +143,58 @@ input, textarea {
     }
 }
 
+.FilmsListHeader {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.filterButton {
+    color: gray;
+    cursor: pointer;
+}
+
+.filterButton:hover {
+    color: rgb(39, 107, 146);
+    fill: rgb(39, 107, 146);
+}
+
+.filterButton svg {
+    position: relative;
+    top: 5px
+}
+
+.filterOptions {
+    font-size: 12px;
+    width: 160px;
+    height: 50px;
+}
+
+.filterSearch {
+    font-size: 12px;
+    font-variant-caps: normal;
+    padding: 5px 10px 5px 10px;
+}
+
+.dropdownInput {
+    width: 50%;
+    padding: 0 0 0 0;
+}
+
+@media(min-width: 768px) {
+    .FilmsListHeader {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .filterdropdown {
+        position: relative;
+        top: 25px;
+        right: 2px;
+    }
+}
+
 .imgResponsive {
     width: 100%;
     height: auto;

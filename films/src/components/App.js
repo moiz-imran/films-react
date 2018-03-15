@@ -15,7 +15,7 @@ class App extends React.Component {
                 {isLoggedin ? 
                 <div>
                     <FilmSearch />
-                    <FilmCatalog />
+                    <FilmCatalog key={Math.random()} />
                 </div> :
                 <WelcomePage />}
             </div>

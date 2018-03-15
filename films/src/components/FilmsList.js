@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import FilterFilms from '../containers/FilterFilms';
 
 class FilmsList extends React.Component {
     constructor(props) {
@@ -26,7 +27,10 @@ class FilmsList extends React.Component {
         const results = this.props.films.results ? this.props.films.results : [];
         return (
             <section>
-                <h2>Browse Movies</h2>
+                <div align='center' className='FilmsListHeader'>
+                    <h2>Browse Movies</h2>
+                    <FilterFilms />
+                </div>
                 <InfiniteScroll
                     next={this.loadNextData}
                     hasMore={this.props.films.next !== null}
