@@ -13,8 +13,11 @@ export const addNewRating = ({ filmId, score }) => {
             }
         }).then(({ data }) => {
             dispatch(fetchFilmById(filmId));
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -29,8 +32,11 @@ export const updateRating = ({ id, filmId, score }) => {
             }
         }).then(({ data }) => {
             dispatch(fetchFilmById(data.filmId));
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -43,8 +49,11 @@ export const deleteRating = ({ id, filmId }) => {
             }
         }).then(() => {
                 dispatch(fetchFilmById(filmId));
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }

@@ -4,7 +4,8 @@ import FilterDropDown from '../components/FilterDropDown'
 
 const mapStateToProps = state => {
     return {
-        films: state.filteredFilms
+        films: state.filteredFilms,
+        error: state.filmsErrorMessage
     }
 }
 

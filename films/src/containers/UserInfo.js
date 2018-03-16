@@ -4,7 +4,8 @@ import UserDropDown from '../components/UserDropDown'
 
 const mapStateToProps = state => {
     return {
-        user: state.userProfile
+        user: state.userProfile,
+        error: state.userErrorMessage
     }
 }
 

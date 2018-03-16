@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import FilterFilms from '../containers/FilterFilms';
+import { withRouter } from 'react-router-dom'
 
 class FilmsList extends React.Component {
     constructor(props) {
@@ -10,6 +11,10 @@ class FilmsList extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+
         if (nextProps.allFilms !== this.props.allFilms) {
             this.props.fetchFilms({ limit: 10 })
         }
@@ -55,4 +60,4 @@ class FilmsList extends React.Component {
     }
 }
 
-export default FilmsList;
+export default withRouter(FilmsList);

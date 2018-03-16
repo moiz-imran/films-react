@@ -5,6 +5,7 @@ import 'react-dd-menu/dist/react-dd-menu.min.css'
 import AddNewFilm from '../containers/AddNewFilm'
 import ChangePassword from '../containers/ChangePassword';
 import EditUser from '../containers/EditUser';
+import { withRouter } from 'react-router-dom'
 
 class UserDropDown extends React.Component {
     constructor(props) {
@@ -25,6 +26,12 @@ class UserDropDown extends React.Component {
         this.closePasswordModal = this.closePasswordModal.bind(this);
         this.openUpdateModal = this.openUpdateModal.bind(this);
         this.closeUpdateModal = this.closeUpdateModal.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
     }
 
     openAddModal() {
@@ -105,4 +112,4 @@ class UserDropDown extends React.Component {
     }
 }
 
-export default UserDropDown;
+export default withRouter(UserDropDown);

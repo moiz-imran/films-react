@@ -10,8 +10,11 @@ export const fetchProfile = () => {
             },
         }).then(({ data }) => {
             dispatch(fetchProfileAction(data));
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else 
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -33,8 +36,11 @@ export const updateProfile = ({ first_name, last_name, email }) => {
             }
         }).then(({ data }) => {
             dispatch(fetchProfileAction(data));
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -49,8 +55,11 @@ export const changePassword = ({ oldPassword, newPassword1, newPassword2 }) => {
             }
         }).then(({ data }) => {
             dispatch(setUserToken(data));            
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -63,8 +72,11 @@ export const logIn = ({ email, password }) => {
             credentials: 'include'
         }).then(({ data }) => {
             dispatch(setUserToken(data));
-        }).catch(({ response: {data} }) => {
-            dispatch(errorReceived(data.message));            
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -76,21 +88,17 @@ export const setUserToken = (data) => {
     }
 }
 
-export const errorReceived = message => {
-    return {
-        type: 'USER_ERROR',
-        msg: message
-    }
-}
-
 export const signUp = ({ email, username, password1, password2 }) => {
     return dispatch => {
         axios.post(url + '/signup', {
             email, username, password1, password2
         }).then(({ data }) => {
             dispatch(setUserToken(data));
-        }).catch(({ response: {data} }) => {
-            dispatch(errorReceived(data.message));            
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -106,8 +114,11 @@ export const logOut = () => {
             dispatch(logOutAction())
             localStorage.removeItem('tintash_user_token');
             sessionStorage.removeItem('tintash_user_token');
-        }).catch(({ response: { data } }) => {
-            dispatch(errorReceived(data.message));
+        }).catch(error => {
+            if (error.response)
+                dispatch(errorReceived(error.response.data.message));
+            else
+                dispatch(errorReceived(error.message));
         });
     }
 }
@@ -115,6 +126,13 @@ export const logOut = () => {
 export const logOutAction = () => {
     return {
         type: 'LOGOUT_USER'
+    }
+}
+
+export const errorReceived = message => {
+    return {
+        type: 'USER_ERROR',
+        msg: message
     }
 }
 

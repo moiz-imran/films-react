@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'simple-react-modal'
+import { withRouter } from 'react-router-dom'
 
 class PasswordModal extends React.Component {
     constructor(props) {
@@ -14,6 +15,10 @@ class PasswordModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+
         if (nextProps.userToken !== this.props.userToken) {
             this.setState({ changeSuccessful: true });
         } else if (nextProps.error === 'Sign up failed. Passwords don\'t match.') {
@@ -85,4 +90,4 @@ class PasswordModal extends React.Component {
     }
 }
 
-export default PasswordModal;
+export default withRouter(PasswordModal);

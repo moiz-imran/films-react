@@ -372,6 +372,18 @@ svg:hover {
     color: rgb(39, 107, 146);
 }
 
+.errorPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    fill: rgb(173, 41, 41);
+}
+
 @media(min-width: 300px) {
     .filmsList a {
         width: 48%;

@@ -2,6 +2,7 @@ import React from 'react'
 import DropdownMenu from 'react-dd-menu'
 import 'react-dd-menu/dist/react-dd-menu.css'
 import 'react-dd-menu/dist/react-dd-menu.min.css'
+import { withRouter } from 'react-router-dom'
 
 class FilterDropDown extends React.Component {
     constructor(props) {
@@ -17,6 +18,12 @@ class FilterDropDown extends React.Component {
         this.closeMenu = this.closeMenu.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
     }
 
     handleChange(event) {
@@ -76,4 +83,4 @@ class FilterDropDown extends React.Component {
     }
 }
 
-export default FilterDropDown;
+export default withRouter(FilterDropDown);

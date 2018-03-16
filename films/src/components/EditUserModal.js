@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'simple-react-modal'
+import { withRouter } from 'react-router-dom'
 
 class EditUserModal extends React.Component {
     constructor(props) {
@@ -10,6 +11,12 @@ class EditUserModal extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onClose = this.onClose.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
     }
 
     handleSubmit(e) {
@@ -67,4 +74,4 @@ class EditUserModal extends React.Component {
     }
 }
 
-export default EditUserModal;
+export default withRouter(EditUserModal);

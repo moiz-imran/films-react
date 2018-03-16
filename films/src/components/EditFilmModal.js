@@ -19,6 +19,10 @@ class EditFilmModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+
         if (nextProps.film !== this.props.film) {
             this.props.closeModal();
         } else if (nextProps.error === 'Validation isUrl on img_url failed') {

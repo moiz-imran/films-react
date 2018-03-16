@@ -31,6 +31,10 @@ export class FilmView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+
         if (nextProps.userToken === '' || !nextProps.film.id) {
             this.props.history.push('/')
         } else if (nextProps.id !== this.props.id) {

@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from 'simple-react-modal'
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import { withRouter } from 'react-router-dom'
 
 class AddRatingModal extends React.Component {
     constructor(props) {
@@ -15,6 +16,10 @@ class AddRatingModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+
         if ((nextProps.film.id === this.props.film.id) && (nextProps.film.ratings.length > this.props.film.ratings.length)) {
             this.setState({ ratingAdded: true })
         }
@@ -59,4 +64,4 @@ class AddRatingModal extends React.Component {
     }
 }
 
-export default AddRatingModal;
+export default withRouter(AddRatingModal);

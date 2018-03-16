@@ -15,6 +15,10 @@ class LoginModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+
         if (nextProps.userToken !== '') {
             this.props.history.push('/');
         } else if (nextProps.error === 'Authentication failed. Wrong password.') {

@@ -6,7 +6,8 @@ const mapStateToProps = (state, ownParams) => {
     return {
         film: state.film,
         id: ownParams.match.params.id,
-        userToken: state.userToken
+        userToken: state.userToken,
+        error: state.filmsErrorMessage
     }
 }
 

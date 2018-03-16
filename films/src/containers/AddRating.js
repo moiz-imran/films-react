@@ -6,7 +6,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         film: state.film,
         showModal: ownProps.showModal,
-        closeModal: ownProps.closeModal
+        closeModal: ownProps.closeModal,
+        error: state.ratingsErrorMessage
     }
 }
 

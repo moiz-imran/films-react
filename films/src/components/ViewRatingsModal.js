@@ -1,8 +1,15 @@
 import React from 'react'
 import Modal from 'simple-react-modal'
 import SingleRating from './SingleRating'
+import { withRouter } from 'react-router-dom'
 
 class ViewRatingsModal extends React.Component {
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
+    }
+
     render() {
         const { showModal, film, editRating, deleteRating, closeModal } = this.props;
         const ratings = film.ratings ? 
@@ -45,4 +52,4 @@ class ViewRatingsModal extends React.Component {
     }
 }
 
-export default ViewRatingsModal;
+export default withRouter(ViewRatingsModal);

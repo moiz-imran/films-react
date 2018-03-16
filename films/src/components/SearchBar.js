@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchInput, { createFilter } from 'react-search-input'
 import SearchResults from './SearchResults'
+import { withRouter } from 'react-router-dom'
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -17,6 +18,12 @@ class SearchBar extends React.Component {
 
     componentDidMount() {
         this.props.fetchFilms();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.error === 'Network Error') {
+            this.props.history.push('/error');
+        }
     }
 
     handleClick() {
@@ -45,4 +52,4 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);

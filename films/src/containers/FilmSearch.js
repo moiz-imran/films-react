@@ -4,7 +4,8 @@ import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = state => {
     return {
-        films: state.films
+        films: state.films,
+        error: state.filmsErrorMessage
     }
 }
 
