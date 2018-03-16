@@ -46,7 +46,7 @@ class FilterDropDown extends React.Component {
                     filter
                 </a>,
             align: 'right',
-            className: 'filterdropdown',
+            className: 'filterDropdown',
             closeOnInsideClick: false,
         };
 

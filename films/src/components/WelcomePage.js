@@ -36,9 +36,9 @@ class WelcomePage extends React.Component {
     render() {
         return (
             <div>
-                <div className='logsignbuttons'>
-                    <button onClick={this.openSignupModal} className='signButton'>Signup</button>
-                    <button onClick={this.openLoginModal} className='logButton'>Login</button>
+                <div className='logSignButtons'>
+                    <button onClick={this.openSignupModal}>Signup</button>
+                    <button onClick={this.openLoginModal}>Login</button>
                 </div>
                 <Login showModal={this.state.showLoginModal} closeModal={this.closeLoginModal} />
                 <Signup showModal={this.state.showSignupModal} closeModal={this.closeSignupModal} />

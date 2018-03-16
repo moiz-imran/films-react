@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal, { closeStyle } from 'simple-react-modal'
+import Modal from 'simple-react-modal'
 import { withRouter } from 'react-router-dom'
 
 class LoginModal extends React.Component {
@@ -12,7 +12,6 @@ class LoginModal extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onClose = this.onClose.bind(this);
-        this.onSelect = this.onSelect.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -27,10 +26,6 @@ class LoginModal extends React.Component {
         }
     }
 
-    onSelect() {
-        this.setState({ rememberCheck: true });
-    }
-
     handleSubmit(e) {
         e.preventDefault();
 
@@ -39,7 +34,7 @@ class LoginModal extends React.Component {
             password: e.target.password.value,
         }
 
-        const storageState = this.state.rememberCheck ? 'local' : 'session';
+        const storageState = e.target.keeplog.checked ? 'local' : 'session';
 
         this.props.setStorageState(storageState);
         this.props.logIn(userData);
@@ -58,19 +53,23 @@ class LoginModal extends React.Component {
                     show={showModal}
                     onClose={this.onClose}
                     transitionSpeed={1}
+                    containerStyle={{ width: '300px' }}
                 >
-                    <a style={closeStyle} onClick={this.onClose}>X</a>
+                    <a className='modalClose' onClick={this.onClose}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+                    </a>
                     <h2>Login</h2>
                     <form onSubmit={this.handleSubmit}>
-                        <label htmlFor="email">email:</label>
+                        <label htmlFor="email">Email:</label>
                         <input id="email" name="email" type="text" required />
                         <br />
 
-                        <label htmlFor="password">password:</label>
+                        <label htmlFor="password">Password:</label>
                         <input id="password" name="password" type="password" required />
                         <br />
 
-                        <label><input id='keeplog' name='keeplog' type='checkbox' onChange={this.onSelect} />Remember me</label>
+                        <input id='keeplog' name='keeplog' type='checkbox' />
+                        <label htmlFor="keeplog">Remember me</label>
 
                         <p className='failmsg'>{this.state.failMessage}</p>
                         <button type='submit'>Submit</button>                        

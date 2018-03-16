@@ -14,8 +14,9 @@ class Header extends React.Component {
 
     render() {
         const { isLoggedin } = this.props;
+        const headerClass = isLoggedin ? 'loggedInHeader' : 'loggedOutHeader'
         return (
-            <header>
+            <header className={headerClass}>
                 <Link to={'/'}><h1>Tintash Movies</h1></Link>
                 {isLoggedin && <UserInfo />}
             </header>

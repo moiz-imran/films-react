@@ -27,7 +27,7 @@ class FilmsList extends React.Component {
         const results = this.props.films.results ? this.props.films.results : [];
         return (
             <section>
-                <div align='center' className='FilmsListHeader'>
+                <div align='center' className='filmsListHeader'>
                     <h2>Browse Movies</h2>
                     <FilterFilms />
                 </div>
@@ -35,7 +35,7 @@ class FilmsList extends React.Component {
                     next={this.loadNextData}
                     hasMore={this.props.films.next !== null}
                 >
-                    <div className="FilmsList">
+                    <div className="filmsList">
                         {results.map(film => {
                             return (
                                 <Link className='movieLink' key={film.id} to={`/movie/${film.id}`}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal, { closeStyle } from 'simple-react-modal'
+import Modal from 'simple-react-modal'
 import { withRouter } from 'react-router-dom'
 
 class SignupModal extends React.Component {
@@ -22,6 +22,8 @@ class SignupModal extends React.Component {
         } else if (nextProps.error === 'email must be unique') {
             this.setState({ failMessage: 'Email already registered' });
             this.props.resetError();
+        } else if (nextProps.error === 'Validation is on raw_password failed') {
+            this.setState({ failMessage: 'Password must have at least one alphabet, one numerical and no spaces.' })
         }
     }
 
@@ -55,8 +57,11 @@ class SignupModal extends React.Component {
                     show={showModal}
                     onClose={this.onClose}
                     transitionSpeed={1}
+                    containerStyle={{ width: '300px' }}
                 >
-                    <a style={closeStyle} onClick={this.onClose}>X</a>
+                    <a className='modalClose' onClick={this.onClose}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+                    </a>
                     <h2>Signup</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="email">Email:</label>
@@ -68,11 +73,11 @@ class SignupModal extends React.Component {
                         <br />
 
                         <label htmlFor="password1">Password:</label>
-                        <input id="password1" name="password1" type="password" required />
+                        <input id="password1" name="password1" type="password" minLength={8} required />
                         <br />
 
                         <label htmlFor="password2">Re-enter password:</label>
-                        <input id="password2" name="password2" type="password" required />
+                        <input id="password2" name="password2" type="password" minLength={8} required />
                         <br />
 
                         <p className='failmsg'>{this.state.failMessage}</p>

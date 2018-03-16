@@ -104,6 +104,8 @@ export const logOut = () => {
         })
         .then(() => {
             dispatch(logOutAction())
+            localStorage.removeItem('tintash_user_token');
+            sessionStorage.removeItem('tintash_user_token');
         }).catch(({ response: { data } }) => {
             dispatch(errorReceived(data.message));
         });
