@@ -8,21 +8,27 @@ class FilterDropDown extends React.Component {
         super(props);
         this.state = {
             isMenuOpen: false,
+            max_year: '',
+            min_year: '',
+            searchString: ''
         };
 
         this.toggleMenu = this.toggleMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleSubmit (e) {
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    handleSubmit(e) {
         e.preventDefault();
 
-        const data = {
-            max_year: e.target.max_year.value,
-            min_year: e.target.min_year.value,
-            searchString: e.target.searchString.value
-        }
+        const { max_year, min_year, searchString } = this.state;
+
+        const data = { max_year, min_year, searchString };
 
         this.props.fetchFilms(data);
         this.setState({ isMenuOpen: false });
@@ -37,6 +43,7 @@ class FilterDropDown extends React.Component {
     }
 
     render() {
+        const { max_year, min_year, searchString } = this.state;
         const menuOptions = {
             isOpen: this.state.isMenuOpen,
             close: this.closeMenu,
@@ -54,13 +61,13 @@ class FilterDropDown extends React.Component {
             <DropdownMenu {...menuOptions}>
                 <form onSubmit={this.handleSubmit}>
                     <li className='filterOptions'>
-                        <label>Max Year: <input name='max_year' className='dropdownInput' type='number' min={1800} max={2099} /></label>
+                        <label>Min Year: <input name='min_year' className='dropdownInput' type='number' value={min_year} onChange={this.handleChange} min={1800} max={2099} /></label>
                     </li>
                     <li className='filterOptions'>
-                        <label>Min Year: <input name='min_year' className='dropdownInput' type='number' min={1800} max={2099} /></label>
+                        <label>Max Year: <input name='max_year' className='dropdownInput' type='number' value={max_year} onChange={this.handleChange} min={1800} max={2099} /></label>
                     </li>
                     <li className='filterOptions'>
-                        <label>Keywords: <input name='searchString' className='dropdownInput' type='text' /></label>
+                        <label>Keywords: <input name='searchString' className='dropdownInput' type='text' value={searchString} onChange={this.handleChange} /></label>
                     </li>
                     <button type='submit' className='filterSearch'>Search</button>
                 </form>
