@@ -5,7 +5,8 @@ import FilmView from '../components/FilmView'
 const mapStateToProps = (state, ownParams) => {
     return {
         film: state.film,
-        id: ownParams.match.params.id
+        id: ownParams.match.params.id,
+        userToken: state.userToken
     }
 }
 
